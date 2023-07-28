@@ -34,7 +34,10 @@ const replaceChildHeading = ()=>{
     const h1= document.querySelector("header h1")
 
     const h2 = document.createElement("h2")
+    h2.id="a1"
     h2.textContent="All for love"
+
+    console.log(h2)
 
 
     header.replaceChild(h2, h1)
