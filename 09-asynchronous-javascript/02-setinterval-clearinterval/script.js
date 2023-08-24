@@ -3,7 +3,7 @@ let intervalID;
 
 const changeColors = () => {
     if(!intervalID ) {
-        intervalID = setInterval(changeRandomColors, 1000);
+        intervalID = setInterval(changeRandomColors, 500);
     }
 }
 
