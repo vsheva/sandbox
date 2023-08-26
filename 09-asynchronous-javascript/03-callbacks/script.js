@@ -25,7 +25,7 @@ const getPosts=()=>{
 
     posts.forEach((el)=>{
       const div= document.createElement('div');
-      div.innerHTML = `<h1>${el.title} - ${el.body}</h1>`
+      div.innerHTML = `<strong>${el.title}</strong> - ${el.body}`
       document.querySelector("#posts").appendChild(div)
     })
   }, 1000)

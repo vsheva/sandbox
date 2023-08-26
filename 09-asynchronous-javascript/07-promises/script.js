@@ -1,3 +1,32 @@
+/**
+ const posts=[
+    {title:"Post1", body:"This is Post One"},
+    {title:"Post2", body:"This is Post Two"},
+]
+
+const createPost=(post, cb)=>{
+    setTimeout(()=>{
+        posts.push(post);
+        cb(); //!!!
+    }, 2000);
+
+}
+
+const getPosts=()=>{
+    setTimeout(()=>{
+
+        posts.forEach((el)=>{
+            const div= document.createElement('div');
+            div.innerHTML = `<strong>${el.title}</strong> - ${el.body}`
+            document.querySelector("#posts").appendChild(div)
+        })
+    }, 1000)
+}
+
+createPost({title:"Post3", body:"This is Post Three"}, getPosts);
+ */
+
+
 const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
         let error = false; // !!! или true, чтобы была ошибка
@@ -16,6 +45,8 @@ promise
     .then((elem) => {console.log(elem)}) // вызов, куда заходит в качестве аргумента структурный коллбек // он может заходить как ссылкой на переменную без скобок (иначе будет вызов) function func(callback) или развернуто function func(func(){})
     .catch((newerr)=>console.log(newerr))// !!!
     .finally(()=>console.log("Promise were resolved or rejected"))
+
+
 // .then((errorel)=>console.log(errorel)) !!! передаем в вызов структурный коллбэк, но ошибку не отлавливаем
 
 
