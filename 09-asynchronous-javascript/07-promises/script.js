@@ -14,7 +14,8 @@ const promise = new Promise((resolve, reject) => {
 
 promise
     .then((elem) => {console.log(elem)}) // вызов, куда заходит в качестве аргумента структурный коллбек // он может заходить как ссылкой на переменную без скобок (иначе будет вызов) function func(callback) или развернуто function func(func(){})
-    .catch((newerr)=>console.log(newerr)) // !!!
+    .catch((newerr)=>console.log(newerr))// !!!
+    .finally(()=>console.log("Promise were resolved or rejected"))
 // .then((errorel)=>console.log(errorel)) !!! передаем в вызов структурный коллбэк, но ошибку не отлавливаем
 
 
@@ -33,6 +34,7 @@ console.log("Hello from Promise!")
 // Hello from Promise!
 // script.js:6 Main Task 1 completed
 // script.js:16 {name: 'Valerii', job: 'programmer', age: 41}
+//Promise were resolved or rejected
 
 //2. когда  let error = true; есть ошибка и она отловлена
 //    Hello from Promise!
