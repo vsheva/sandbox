@@ -1,51 +1,49 @@
+const posts=[
+  {title:"Post1", body:"This is Post One"},
+  {title:"Post2", body:"This is Post Two"},
+]
 
-const posts = [
-  { title: 'Post One', body: 'This is post one' },
-  { title: 'Post Two', body: 'This is post two' },
-];
-
-function createPost(post) {
-
-  let promise= new Promise((resolve, reject) =>{
-    setTimeout(() => {
-      let error = true;
-
+const createPost=(post)=>{
+  let promise =new Promise((resolve, reject)=>{
+    setTimeout(()=>{
       posts.push(post);
-
-      if(!error){
-        resolve()
-      } {
-        reject("There is an Error!")// вызов со входом
+      let isError = true;
+      if(!isError) {
+        resolve();
+      } else {
+        reject("Something went wrong");
       }
-
     }, 2000);
   })
-
   return promise;
 
 }
 
-function getPosts() {
-  setTimeout(() => {
+const getPosts=()=>{
+  setTimeout(()=>{
 
-    posts.forEach(function (el) {
-      const div = document.createElement('div');
-      div.innerHTML = `<strong>${el.title}</strong> - ${el.body}`;
-      document.querySelector('#posts').appendChild(div);
-    });
-  }, 1000);
+    posts.forEach((el)=>{
+      const div= document.createElement('div');
+      div.innerHTML = `<strong>${el.title}</strong> - ${el.body}`
+      document.querySelector("#posts").appendChild(div)
+    })
+  }, 1000)
 }
 
-
-const getError=(el)=>{  //структурный cb со входом
-  const div = document.createElement('div');
-  div.innerHTML = `<strong>${el}</strong>`
-  let postsDiv = document.getElementById('posts');
-  postsDiv.appendChild(div)
+const showError=(err)=>{
+  const h3= document.createElement('h3');
+  h3.innerHTML = `<strong>${err}</strong>`
+  document.querySelector("#posts").appendChild(h3)
 }
 
-//createPost({ title: 'Post Three', body: 'This is post' }, getPosts);
-createPost({ title: 'Post Three', body: 'This is post' }).then(getPosts).catch(getError);
+let promise=createPost({title:"Post3", body:"This is Post Three"})
+promise.then(getPosts).catch(showError)
+
+
+
+
+
+   // promise.then(getPosts).catch((err)=>console.log(err))
 
 
 
