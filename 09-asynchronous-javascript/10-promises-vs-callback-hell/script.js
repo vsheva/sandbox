@@ -22,18 +22,17 @@ function getData(endpoint, cb) {
 
 getData('./movies.json')
     .then((movies) => {
-    console.log(movies);
-    return getData('./actors.json')
-})
-    .then((actors)=>{
-    console.log(actors);
-    return getData('./directors.json') //!!! ./directors1.json
-})
-    .then((directors)=>{
-    console.log(directors);
-})
-    .catch((err) =>console.log(err))
-
+        console.log(movies);
+        return getData('./actors.json')
+    })
+    .then((actors) => {
+        console.log(actors);
+        return getData('./directors.json') //!!! ./directors1.json
+    })
+    .then((directors) => {
+        console.log(directors);
+    })
+    .catch((err) => console.log(err))
 
 
 // getData('./movies.json', (data) => {
