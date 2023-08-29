@@ -12,6 +12,14 @@ const fetchData = () => {
 const showUser = (user) => {
     const userDiv = document.getElementById("user");
 
+    if (user.gender === 'female') {
+        document.body.style.backgroundColor = "purple"
+    } else if (user.gender === 'male') {
+        document.body.style.backgroundColor = "lightblue"
+    } else {
+        document.body.style.backgroundColor = "white"
+    }
+
     userDiv.innerHTML = ` <div class="flex justify-between">
           <div class="flex">
             <img
@@ -36,13 +44,6 @@ const showUser = (user) => {
           </div>
         </div>`
 
-    if (user.gender === 'female') {
-        document.body.style.backgroundColor = "purple"
-    } else if (user.gender === 'male') {
-        document.body.style.backgroundColor = "lightblue"
-    } else {
-        document.body.style.backgroundColor = "white"
-    }
 }
 
 const showSpinner = () => {
