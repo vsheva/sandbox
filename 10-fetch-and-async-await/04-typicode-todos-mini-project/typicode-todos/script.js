@@ -15,7 +15,9 @@ const getData = () => {
 const showTodo = (todo) => {
     const div = document.createElement("div");
     div.textContent = todo.title
-    div.setAttribute("data-id", todo.id);
+    div.classList.add("tudu")
+    //div.setAttribute("data-id", todo.id);
+    div.dataset.id = todo.id; //<div data-id="1">delectus aut autem</div>  !!!   https://ru.hexlet.io/qna/javascript/questions/kak-rabotat-metod-dataset-v-js
 
     if (todo.completed) {
         div.classList.add("done")
@@ -41,13 +43,47 @@ const createTodo = (e) => {
     })
         .then((res) => res.json())
         .then((newTodo) => {
+            //console.log(newTodo);
             showTodo(newTodo)
         })
 }
 
+const toggled = (e) => {
+    if (e.target.classList.contains("tudu")) {
+        e.target.classList.toggle("done") //добавляем done
+    }
+
+    // !!!   putChange(e.target.dataset.id, e.target.classList.toggle("done"))
+
+
+    putChange(e.target.dataset.id, e.target.classList.contains("done"))   //!!!
+}
+
+const putChange = (id, complete) => {
+    return fetch(`${apiUrl}/${id}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({completed: complete})
+    })
+        .then((response) => response.json())
+        .then((data) => (data))
+}
+
+
+const removeTodo = (e) => {
+    const id = e.target.dataset.id;
+    console.log(id)
+    return fetch(apiUrl, {method: 'DELETE'})
+        .then((res) => res.json())
+        .then(() => e.target.remove()) //!!!
+}
+
+
 const init = () => {
     document.addEventListener("DOMContentLoaded", getData);
     document.getElementById("todo-form").addEventListener("submit", createTodo);
+    document.getElementById("todo-list").addEventListener("click", toggled);
+    document.getElementById("todo-list").addEventListener("dblclick", removeTodo);
 }
 
 init();
