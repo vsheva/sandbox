@@ -1,23 +1,34 @@
 function fetchUser() {
-  showSpinner();
-  fetch('https://randomuser.me/api')
-    .then((res) => res.json())
-    .then((data) => {
-      hideSpinner();
-      displayUser(data.results[0]);
-    });
+    showSpinner();
+    fetch('https://randomuser1.me/api')
+        .then((res) => {
+            if (!res.ok) {
+                throw new Error("Failed request")
+            }
+              return res.json() //!!!
+        })
+        .then((data) => {
+            hideSpinner();
+            displayUser(data.results[0]);
+        })
+        .catch((err) => {
+            hideSpinner()
+            document.getElementById("user").innerHTML = `
+            <div class="text-xl text-red-400 ">${err}</div>
+            `
+        })
 }
 
 function displayUser(user) {
-  const userDisplay = document.querySelector('#user');
+    const userDisplay = document.querySelector('#user');
 
-  if (user.gender === 'female') {
-    document.body.style.backgroundColor = 'rebeccapurple';
-  } else {
-    document.body.style.backgroundColor = 'steelblue';
-  }
+    if (user.gender === 'female') {
+        document.body.style.backgroundColor = 'rebeccapurple';
+    } else {
+        document.body.style.backgroundColor = 'steelblue';
+    }
 
-  userDisplay.innerHTML = `
+    userDisplay.innerHTML = `
   <div class="flex justify-between">
   <div class="flex">
     <img
@@ -45,11 +56,11 @@ function displayUser(user) {
 }
 
 function showSpinner() {
-  document.querySelector('.spinner').style.display = 'block';
+    document.querySelector('.spinner').style.display = 'block';
 }
 
 function hideSpinner() {
-  document.querySelector('.spinner').style.display = 'none';
+    document.querySelector('.spinner').style.display = 'none';
 }
 
 document.querySelector('#generate').addEventListener('click', fetchUser);

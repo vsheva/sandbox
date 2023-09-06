@@ -48,6 +48,8 @@ const createTodo = (e) => {
         })
 }
 
+// PUT
+
 const toggled = (e) => {
     if (e.target.classList.contains("tudu")) {
         e.target.classList.toggle("done") //добавляем done
@@ -75,6 +77,8 @@ const putRequest = (id, complete) => {
         .then((data) => (data))
 }
 
+
+//DELETE
 
 const removeTodo = (e) => {
     const id = e.target.dataset.id;
