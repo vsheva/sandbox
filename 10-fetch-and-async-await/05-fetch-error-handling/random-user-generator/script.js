@@ -1,7 +1,8 @@
 function fetchUser() {
     showSpinner();
-    fetch('https://randomuser1.me/api')
+    fetch('https://randomuser.me/api')
         .then((res) => {
+            //console.log(res)
             if (!res.ok) {
                 throw new Error("Failed request")
             }
