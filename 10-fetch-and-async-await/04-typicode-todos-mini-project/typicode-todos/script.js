@@ -15,7 +15,7 @@ const getData = () => {
 const showTodo = (todo) => {
     const div = document.createElement("div");
     div.textContent = todo.title
-    div.classList.add("tudu")
+    div.classList.add("tudu") // !!!
     //div.setAttribute("data-id", todo.id);
     div.dataset.id = todo.id; //<div data-id="1">delectus aut autem</div>  !!!   https://ru.hexlet.io/qna/javascript/questions/kak-rabotat-metod-dataset-v-js
 
@@ -52,14 +52,20 @@ const toggled = (e) => {
     if (e.target.classList.contains("tudu")) {
         e.target.classList.toggle("done") //добавляем done
     }
-
     // !!!   putChange(e.target.dataset.id, e.target.classList.toggle("done"))
 
+    const id = e.target.dataset.id
 
-    putChange(e.target.dataset.id, e.target.classList.contains("done"))   //!!!
+    // return fetch(`${apiUrl}/${id}`, {
+    //     method: 'PUT',
+    //     headers: {'Content-Type': 'application/json'},
+    //     body: JSON.stringify({completed: e.target.classList.contains("done")})
+    // })
+
+    putRequest(e.target.dataset.id, e.target.classList.contains("done"))   //!!!
 }
 
-const putChange = (id, complete) => {
+const putRequest = (id, complete) => {
     return fetch(`${apiUrl}/${id}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
